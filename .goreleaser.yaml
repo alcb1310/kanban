@@ -1,6 +1,7 @@
 before:
-  - go mod tidy
-  - go generate ./...
+  hooks:
+    - go mod tidy
+    - go generate ./...
 
 builds:
   - binary: kanban
