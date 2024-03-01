@@ -1,13 +1,14 @@
 /*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+Copyright © 2024 Andrés Court andres@andrescourt.com
 */
 package cmd
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
+
+	"github.com/alcb1310/kanban/cmd/tui"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -20,18 +21,7 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		flag, err := cmd.Flags().GetBool("differentmessage")
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-
-		if flag {
-			fmt.Println("This is a different message")
-			return
-		}
-
-		fmt.Println("Hello World!")
+		tui.App()
 	},
 }
 
@@ -45,5 +35,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("differentmessage", "d", false, "Toggle a different message")
+	// Set different flags here
+	// rootCmd.Flags().BoolP("differentmessage", "d", false, "Toggle a different message")
 }
