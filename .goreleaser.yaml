@@ -1,0 +1,40 @@
+builds:
+  - binary: kanban
+
+    goos: 
+      - linux
+      - darwin
+
+    goarch: 
+      - amd64
+      - arm64
+
+    env:
+      - CGO_ENABLED=0
+
+    flags:
+      - -mod=vendor
+
+release:
+  prerelease: auto
+
+universal_binaries:
+  - replace: true
+
+brews:
+  -
+    name: kanban
+    homepage: https://github.com/alcb1310/kanban
+    description: "Kanban CLI - a cli tool for managin kanban boards"
+    license: MIT
+
+    repository:
+      owner: alcb1310
+      name: homebrew-kanban
+
+    commit_author:
+      name: alcb1310
+      email: andres@andrescourt.com
+
+checksum:
+  name_template: "checksums.txt"
