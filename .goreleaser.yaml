@@ -1,3 +1,7 @@
+before:
+  - go mod tidy
+  - go generate ./...
+
 builds:
   - binary: kanban
 
@@ -30,7 +34,8 @@ brews:
 
     repository:
       owner: alcb1310
-      name: homebrew-kanban
+      name: homebrew-alcb1310
+      branch: master
 
     commit_author:
       name: alcb1310
