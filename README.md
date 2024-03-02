@@ -11,7 +11,7 @@ This is an application that will allow you to create and manage a kanban board.
 To install the project using *Homebrew*:
 
 ```bash
-brew tap alcb1310/kanban
+brew tap alcb1310/alcb1310
 brew install kanban
 ```
 
