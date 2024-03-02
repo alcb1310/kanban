@@ -44,13 +44,13 @@ cd kanban
 To build the project:
 
 ```bash
-make build
+go build main.go
 ```
 
 To install the project:
 
 ```bash
-make install
+go install main.go
 ```
 
 ## Usage
