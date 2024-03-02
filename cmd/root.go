@@ -16,7 +16,22 @@ var rootCmd = &cobra.Command{
 	Use:   "kanban",
 	Short: "A CLI tool for Kanban board",
 	Long: `
-	A long description for the CLI tool for Kanban board
+Manage efficiently your TODO items using a kanban board
+
+ADDING A NEW ITEM:
+	press n to add a new item, then write the title of the item and press enter
+
+CHANGE THE STATUS OF AN ITEM:
+	press space to change the status
+
+EXIT:
+	press ctrl + c to exit the kanban board
+
+MOVE BETWEEN ITEMS IN A LIST:
+	use the up and down arrow keys or j and k
+
+MOVE BETWEEN LISTS:
+	use the left and right arrow keys or h and l
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
