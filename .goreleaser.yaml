@@ -13,6 +13,14 @@ builds:
 
     goos: 
       - darwin
+      - linux
+
+    goarch:
+      - amd64
+      - arm64
+
+    goarm:
+      - 7
 
     env:
       - CGO_ENABLED=1
