@@ -22,7 +22,7 @@ builds:
       - 7
 
     env:
-      # - CGO_ENABLED=0
+      - CGO_ENABLED=1
       - >-
         {{- if eq .Os "darwin" }}
           {{- if eq .Arch "amd64"}}CC=o64-clang{{- end }}
