@@ -73,6 +73,10 @@ kanban
 
 - To create a new todo item press n
 
+- To exit the application press ctrl+c
+
+- To display the help message in the command prompt run `kanban -h` or `kanban --help`
+
 ## Tech Stack
 
 ![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)
