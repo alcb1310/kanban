@@ -15,6 +15,14 @@ brew tap alcb1310/alcb1310
 brew install kanban
 ```
 
+### Upgrade
+
+To upgrade from a previous version of the project using *Homebrew*:
+
+```bash
+brew update && brew upgrade kanban
+```
+
 
 ### Build Steps
 
