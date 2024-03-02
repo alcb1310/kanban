@@ -19,9 +19,6 @@ builds:
       - amd64
       - arm64
 
-    env:
-      - CGO_ENABLED=0
-
     flags:
       - -mod=vendor
 
