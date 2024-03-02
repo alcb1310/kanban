@@ -11,14 +11,9 @@ before:
 builds:
   - binary: kanban
 
-    goos: 
-      - darwin
-
-    goarch:
-      - amd64
-
-    goarm:
-      - 7
+    targets:
+      - darwin_arm64
+      - darwin_amd64
 
     env:
       - CGO_ENABLED=1
