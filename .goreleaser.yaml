@@ -11,12 +11,23 @@ before:
 builds:
   - binary: kanban
 
-    targets:
-      - darwin_arm64
-      - darwin_amd64
+    goos: 
+      - darwin
+
+    goarch:
+      - amd64
+      - arm64
+
+    goarm:
+      - 7
 
     env:
-      - CGO_ENABLED=1
+      # - CGO_ENABLED=0
+      - >-
+        {{- if eq .Os "darwin" }}
+          {{- if eq .Arch "amd64"}}CC=o64-clang{{- end }}
+          {{- if eq .Arch "arm64"}}CC=aarch64-apple-darwin20.2-clang{{- end }}
+        {{- end }}
 
     flags:
       - -mod=vendor
