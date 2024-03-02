@@ -4,13 +4,16 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 
+	"github.com/alcb1310/kanban/cmd/database"
 	"github.com/alcb1310/kanban/cmd/types"
 )
 
 const (
 	LIST = iota
+	ADD
 )
 
 type Position struct {
@@ -18,8 +21,12 @@ type Position struct {
 }
 
 type Model struct {
-	Lists    map[int][]types.List
-	Position Position
+	Lists         map[int][]types.List
+	Position      Position
+	mode          int
+	database      database.Database
+	input         textinput.Model
+	width, height int
 }
 
 func App() {
@@ -32,12 +39,24 @@ func App() {
 }
 
 func initialModel() Model {
+	p := Position{
+		Row: 0,
+		Col: 0,
+	}
+
+	db := database.Connect()
+
+	textInput := textinput.New()
+	textInput.Placeholder = "Enter a new item"
+	textInput.Prompt = "> "
+	textInput.Focus()
+
 	return Model{
-		Lists: initList(),
-		Position: Position{
-			Row: 0,
-			Col: 0,
-		},
+		Lists:    initList(db),
+		Position: p,
+		mode:     LIST,
+		database: db,
+		input:    textInput,
 	}
 }
 
@@ -46,9 +65,31 @@ func (m Model) Init() tea.Cmd {
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	return listUpdate(m, msg)
+	switch m.mode {
+	case LIST:
+		return listUpdate(m, msg)
+
+	case ADD:
+		m.input, _ = m.input.Update(msg)
+		return addUpdate(m, msg)
+
+	default:
+		return m, nil
+	}
+
 }
 
 func (m Model) View() string {
-	return displayItems(m)
+	m.Lists = initList(m.database)
+
+	switch m.mode {
+	case LIST:
+		return displayItems(m)
+
+	case ADD:
+		return addView(m)
+
+	default:
+		return ""
+	}
 }

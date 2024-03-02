@@ -67,7 +67,6 @@ var (
 			String()
 
 	listDone = lipgloss.NewStyle().
-			Foreground(subtle).
 			Strikethrough(true).
 			Render
 
@@ -82,8 +81,22 @@ var (
 
 func listUpdate(m Model, msg tea.Msg) (Model, tea.Cmd) {
 	switch msg := msg.(type) {
+	case tea.WindowSizeMsg:
+		m.width, m.height = msg.Width, msg.Height
+
 	case tea.KeyMsg:
 		switch msg.String() {
+		case " ":
+			if m.Position.Col != types.DONE {
+				if len(m.Lists[int(m.Position.Col)]) == 0 {
+					return m, nil
+				}
+
+				l := m.Lists[int(m.Position.Col)][int(m.Position.Row)]
+				m.database.UpdateList(l)
+				m.Lists = initList(m.database)
+			}
+
 		case "up", "k":
 			if m.Position.Row == 0 {
 				m.Position.Row = uint(len(m.Lists[int(m.Position.Col)]) - 1)
@@ -116,6 +129,10 @@ func listUpdate(m Model, msg tea.Msg) (Model, tea.Cmd) {
 
 		case "ctrl+c":
 			return m, tea.Quit
+
+		case "n":
+			m.input.SetValue("")
+			m.mode = ADD
 		}
 	}
 	return m, nil
