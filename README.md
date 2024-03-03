@@ -1,5 +1,9 @@
 # Kanban App
 
+## Preview
+
+https://github.com/alcb1310/kanban/assets/97707578/ccd44f5f-be72-44d2-816f-c5f817c5599e
+
 ## Description
 
 This is an application that will allow you to create and manage a kanban board.
